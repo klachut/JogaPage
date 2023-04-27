@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./styles.css";
+import NavBar from "./components/NavBar";
+import { Route, Routes } from "react-router-dom";
+import { routes } from "./external/menuItems";
+import Footer from "./components/Footer";
 function App() {
+  //  const fcn = async () => {
+  //   const response = await fetch("https://firestore.googleapis.com/v1/projects/joga-page/databases/(default)/documents/events/");
+  // const data = await response.json();
+  // console.log (data);
+  //  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar />
+
+      <Routes>
+        {routes.map((x) => (
+          <Route path={x.route} element={x.component} />
+        ))}
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
